@@ -1,4 +1,4 @@
-package ch11;
+package javaPacman;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -26,65 +26,17 @@ public class Player extends JLabel {
 	// player 속도 상태
 	private final int SPEED = 5;
 
-	// 벽 충돌 상태
-	private boolean leftWallCrash;
-	private boolean rightWallCrash;
-	private boolean topWallCrash;
-	private boolean bottomWallCrash;
-
-	PacManFrame mContext;
-
-	// player가 보는 방향
-	PlayerWay pWay;
-
-	public Player(PacManFrame mContext) {
-		this.mContext = mContext;
+	public Player() {
 		initData();
 		setInitLayout();
 	}
-	
+
 	public boolean isGhost() {
 		return ghost;
 	}
 
 	public void setGhost(boolean ghost) {
 		this.ghost = ghost;
-	}
-
-	public PlayerWay getpWay() {
-		return pWay;
-	}
-
-	public boolean isLeftWallCrash() {
-		return leftWallCrash;
-	}
-
-	public void setLeftWallCrash(boolean leftWallCrash) {
-		this.leftWallCrash = leftWallCrash;
-	}
-
-	public boolean isRightWallCrash() {
-		return rightWallCrash;
-	}
-
-	public void setRightWallCrash(boolean rightWallCrash) {
-		this.rightWallCrash = rightWallCrash;
-	}
-
-	public boolean isTopWallCrash() {
-		return topWallCrash;
-	}
-
-	public void setTopWallCrash(boolean topWallCrash) {
-		this.topWallCrash = topWallCrash;
-	}
-
-	public boolean isBottomWallCrash() {
-		return bottomWallCrash;
-	}
-
-	public void setBottomWallCrash(boolean bottomWallCrash) {
-		this.bottomWallCrash = bottomWallCrash;
 	}
 
 	public int getX() {
@@ -144,23 +96,17 @@ public class Player extends JLabel {
 		right = false;
 		up = false;
 		down = false;
-		leftWallCrash = false;
-		rightWallCrash = false;
-		topWallCrash = false;
-		bottomWallCrash = false;
-		pWay = PlayerWay.RIGHT;
 	}
 
 	private void setInitLayout() {
-		x = 75;
-		y = 315;
-		setSize(40, 40);
+		x = 500;
+		y = 500;
+		setSize(50, 50);
 		setLocation(x, y);
 		setIcon(playerR);
 	}
 
 	public void left() {
-		pWay = PlayerWay.LEFT;
 		left = true;
 		setIcon(playerL);
 		new Thread(new Runnable() {
@@ -169,7 +115,6 @@ public class Player extends JLabel {
 				while (left) {
 					x = x - SPEED;
 					setLocation(x, y);
-					mContext.eatSeed();
 					try {
 						Thread.sleep(15);
 					} catch (InterruptedException e) {
@@ -181,7 +126,6 @@ public class Player extends JLabel {
 	}
 
 	public void right() {
-		pWay = PlayerWay.RIGHT;
 		right = true;
 		setIcon(playerR);
 		new Thread(new Runnable() {
@@ -190,7 +134,6 @@ public class Player extends JLabel {
 				while (right) {
 					x = x + SPEED;
 					setLocation(x, y);
-					mContext.eatSeed();
 					try {
 						Thread.sleep(15);
 					} catch (InterruptedException e) {
@@ -202,8 +145,6 @@ public class Player extends JLabel {
 	}
 
 	public void up() {
-//		System.out.println("위로 보는중");
-		pWay = PlayerWay.UP;
 		up = true;
 		setIcon(playerU);
 		new Thread(new Runnable() {
@@ -212,7 +153,6 @@ public class Player extends JLabel {
 				while (up) {
 					y = y - SPEED;
 					setLocation(x, y);
-					mContext.eatSeed();
 					try {
 						Thread.sleep(15);
 					} catch (InterruptedException e) {
@@ -224,8 +164,6 @@ public class Player extends JLabel {
 	}
 
 	public void down() {
-//		System.out.println("아래로 보는중");
-		pWay = PlayerWay.DOWN;
 		down = true;
 		setIcon(playerD);
 		new Thread(new Runnable() {
@@ -234,7 +172,6 @@ public class Player extends JLabel {
 				while (down) {
 					y = y + SPEED;
 					setLocation(x, y);
-					mContext.eatSeed();
 					try {
 						Thread.sleep(15);
 					} catch (InterruptedException e) {
@@ -244,7 +181,7 @@ public class Player extends JLabel {
 			}
 		}).start();
 	}
-	
+
 	public void resurrection() {
 		this.x = 340;
 		this.y = 340;

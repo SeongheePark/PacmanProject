@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -18,7 +19,9 @@ public class PacManFrame extends JFrame {
 	private JLabel[] seed = new JLabel[131];
 	private PacManFrame mContext = this;
 	private Score score = new Score();
+	private ArrayList<Enemy> enemyList = new ArrayList<>();
 
+	private boolean gameOver;
 	private int coinX = 55;
 	private int coinY = 45;
 
@@ -31,12 +34,28 @@ public class PacManFrame extends JFrame {
 		g.drawString(score.getScore() + "점", 680, 780);	//6650점 max
 
 	}
+	
+	public Player getPlayer() {
+		return player;
+	}
+	
+	public boolean getGameOver() {
+		return gameOver;
+	}
+
+	public void setGameOver(boolean gameOver) {
+		this.gameOver = gameOver;
+	}
 
 	public PacManFrame() {
 		initData();
 		setInitLayout();
 		addEventListener();
 		new Thread(new BackgroundPlayerService(player)).start();
+		
+		for (int i = 0; i < enemyList.size(); i++) {
+			new Thread(new BackgroundEnemyService(enemyList.get(i), this)).start();
+		}
 	}
 
 	public void initData() {
@@ -50,12 +69,26 @@ public class PacManFrame extends JFrame {
 			seed[i].setSize(50, 50);
 		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		makeEnemies();
+	}
+	
+	// 유령 생성
+	public void makeEnemies() {
+		enemyList.add(new Enemy(50, 50));
+		enemyList.add(new Enemy(50, 670));
+		enemyList.add(new Enemy(690, 50));
+		enemyList.add(new Enemy(690, 670));
 
+		System.out.println(enemyList.size());
 	}
 
 	public void setInitLayout() {
 		setLayout(null);
 		add(player);
+		
+		for (int i = 0; i < enemyList.size(); i++) {
+			add(enemyList.get(i));
+		}
 		// coin 1번 지점 x 6개찍기
 		for (int i = 0; i < 6; i++) {
 			add(seed[i]);
