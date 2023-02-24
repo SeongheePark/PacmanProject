@@ -30,10 +30,13 @@ public class Player extends JLabel {
 	private boolean topWallCrash;
 	private boolean bottomWallCrash;
 	
+	PacManFrame mContext;
+	
 	// player가 보는 방향
 	PlayerWay pWay;
 
-	public Player() {
+	public Player(PacManFrame mContext) {
+		this.mContext = mContext;
 		initData();
 		setInitLayout();
 	}
@@ -156,6 +159,7 @@ public class Player extends JLabel {
 				while (left) {
 					x = x - SPEED;
 					setLocation(x, y);
+					mContext.eatSeed();
 					try {
 						Thread.sleep(15);
 					} catch (InterruptedException e) {
@@ -176,6 +180,7 @@ public class Player extends JLabel {
 				while (right) {
 					x = x + SPEED;
 					setLocation(x, y);
+					mContext.eatSeed();
 					try {
 						Thread.sleep(15);
 					} catch (InterruptedException e) {
@@ -197,6 +202,7 @@ public class Player extends JLabel {
 				while (up) {
 					y = y - SPEED;
 					setLocation(x, y);
+					mContext.eatSeed();
 					try {
 						Thread.sleep(15);
 					} catch (InterruptedException e) {
@@ -218,6 +224,7 @@ public class Player extends JLabel {
 				while (down) {
 					y = y + SPEED;
 					setLocation(x, y);
+					mContext.eatSeed();
 					try {
 						Thread.sleep(15);
 					} catch (InterruptedException e) {
