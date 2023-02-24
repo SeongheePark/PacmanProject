@@ -1,4 +1,4 @@
-package ch03;
+package ch11;
 
 import java.awt.Color;
 
@@ -297,7 +297,7 @@ public class PacManFrame extends JFrame {
 		if (player.isLeft()) {
 			for (int i = 0; i < seed.length; i++) {
 				if (Math.abs(player.getX() - seed[i].getX()) < 15
-						&& Math.abs(player.getY() + 25 - seed[i].getY()) < 15) {
+						&& Math.abs(player.getY() - seed[i].getY()) < 15) {
 					seed[i].setIcon(null);
 					score.scoreUp();
 					seed[i].setLocation(0, 0);
@@ -309,7 +309,7 @@ public class PacManFrame extends JFrame {
 		if (player.isRight()) {
 			for (int i = 0; i < seed.length; i++) {
 				if (Math.abs(player.getX() - seed[i].getX()) < 15
-						&& Math.abs(player.getY() + 25 - seed[i].getY()) < 15) {
+						&& Math.abs(player.getY() - seed[i].getY()) < 15) {
 					seed[i].setIcon(null);
 					score.scoreUp();
 					seed[i].setLocation(0, 0);
@@ -321,7 +321,7 @@ public class PacManFrame extends JFrame {
 		if (player.isUp()) {
 			for (int i = 0; i < seed.length; i++) {
 				if (Math.abs(player.getX() - seed[i].getX()) < 15
-						&& Math.abs(player.getY() + 25 - seed[i].getY()) < 15) {
+						&& Math.abs(player.getY() - seed[i].getY()) < 15) {
 					seed[i].setIcon(null);
 					score.scoreUp();
 					seed[i].setLocation(0, 0);
@@ -333,7 +333,7 @@ public class PacManFrame extends JFrame {
 		if (player.isDown()) {
 			for (int i = 0; i < seed.length; i++) {
 				if (Math.abs(player.getX() - seed[i].getX()) < 15
-						&& Math.abs(player.getY() + 25 - seed[i].getY()) < 15) {
+						&& Math.abs(player.getY() - seed[i].getY()) < 15) {
 					seed[i].setIcon(null);
 					score.scoreUp();
 					seed[i].setLocation(0, 0);

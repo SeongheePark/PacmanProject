@@ -1,4 +1,4 @@
-package ch03;
+package ch11;
 
 public class Score {
 	private static int score = 0;

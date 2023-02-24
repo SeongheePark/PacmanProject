@@ -1,9 +1,15 @@
 package ch01;
 
+import java.awt.Rectangle;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class Player extends JLabel {
+
+	PacManFrame mContext;
+
+	int score = 0;
 
 	// player 좌표
 	private int x;
@@ -24,7 +30,8 @@ public class Player extends JLabel {
 	// player 속도 상태
 	private final int SPEED = 5;
 
-	public Player() {
+	public Player(PacManFrame mContext) {
+		this.mContext = mContext;
 		initData();
 		setInitLayout();
 	}
@@ -105,14 +112,16 @@ public class Player extends JLabel {
 				while (left) {
 					x = x - SPEED;
 					setLocation(x, y);
+					mContext.eatSeed();
 					try {
-						Thread.sleep(5);
+						Thread.sleep(10);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-				}
+				} // end of while
 			}
 		}).start();
+
 	}
 
 	public void right() {
@@ -124,12 +133,13 @@ public class Player extends JLabel {
 				while (right) {
 					x = x + SPEED;
 					setLocation(x, y);
+					mContext.eatSeed();
 					try {
-						Thread.sleep(5);
+						Thread.sleep(10);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-				}				
+				}
 			}
 		}).start();
 	}
@@ -143,8 +153,9 @@ public class Player extends JLabel {
 				while (up) {
 					y = y - SPEED;
 					setLocation(x, y);
+					mContext.eatSeed();
 					try {
-						Thread.sleep(5);
+						Thread.sleep(10);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -162,12 +173,13 @@ public class Player extends JLabel {
 				while (down) {
 					y = y + SPEED;
 					setLocation(x, y);
+					mContext.eatSeed();
 					try {
-						Thread.sleep(5);
+						Thread.sleep(10);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-				}				
+				}
 			}
 		}).start();
 	}

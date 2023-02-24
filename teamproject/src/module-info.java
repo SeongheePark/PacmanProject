@@ -1,3 +1,3 @@
-module teamproject {
+module TeamProject {
 	requires java.desktop;
 }

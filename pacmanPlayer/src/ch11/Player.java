@@ -1,4 +1,4 @@
-package ch03;
+package ch11;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
