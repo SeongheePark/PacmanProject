@@ -1,12 +1,12 @@
-package ch02;
+package ch03;
 
 import java.awt.Color;
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+
 
 public class BackgroundPlayerService implements Runnable{
 	
@@ -16,7 +16,7 @@ public class BackgroundPlayerService implements Runnable{
 	public BackgroundPlayerService(Player player) {
 		this.player = player;
 		try {
-			image = ImageIO.read(new File("images/background5.png"));
+			image = ImageIO.read(new File("images/backgroundMapService(2).png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
