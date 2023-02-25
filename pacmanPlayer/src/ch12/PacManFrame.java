@@ -20,6 +20,7 @@ public class PacManFrame extends JFrame {
 	private PacManFrame mContext = this;
 	private Score score = new Score();
 	private ArrayList<Enemy> enemyList = new ArrayList<>();
+	private GameOverFrame gameOverFrame;
 
 	private boolean gameOver;
 	private int coinX = 55;
@@ -43,7 +44,7 @@ public class PacManFrame extends JFrame {
 		return gameOver;
 	}
 
-	public void setGameOver(boolean gameOver) {
+	public void setGameOver(boolean gameOver) { 
 		this.gameOver = gameOver;
 	}
 
@@ -378,11 +379,11 @@ public class PacManFrame extends JFrame {
 			}
 			repaint();
 		} // end of isDown
+		
+		//게임 종료
+		if(gameOver) {
+			new GameOverFrame();
+		}
 	}// end of for
-
-	// 코드 테스트
-	public static void main(String[] args) {
-		new PacManFrame();
-	}
 
 }
