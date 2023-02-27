@@ -156,8 +156,6 @@ public class PacManFrame extends JFrame {
 		enemyList.add(new Enemy(50, 670));
 		enemyList.add(new Enemy(690, 50));
 		enemyList.add(new Enemy(690, 670));
-
-		System.out.println(enemyList.size());
 	}
 
 	public void setInitLayout() {
