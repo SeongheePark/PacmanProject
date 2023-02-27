@@ -15,6 +15,7 @@ public class GameOverFrame extends JFrame implements ActionListener {
 	private JLabel gameOverMap;
 	private JButton startButton;
 	private JLabel gameOver;
+	private JLabel gameSuccess;
 
 	public GameOverFrame() {
 		initData();
@@ -30,9 +31,10 @@ public class GameOverFrame extends JFrame implements ActionListener {
 		setContentPane(gameOverMap);
 		startButton = new JButton("Game Start!");
 		gameOver = new JLabel(new ImageIcon("images/gameOver.png"));
+		gameSuccess = new JLabel(new ImageIcon("images/youWin.png"));
 	}
 
-	private void setInitLayout() {
+	private void setInitLayout() { 
 		setVisible(true);
 		gameOverMap.add(startButton);
 		startButton.setSize(200, 50);
@@ -57,8 +59,8 @@ public class GameOverFrame extends JFrame implements ActionListener {
 
 	public void paint(Graphics g) {
 		super.paint(g);
-		Font font1 = new Font("consolas", Font.BOLD, 20);
-		g.setFont(font1);
+		Font font = new Font("consolas", Font.BOLD, 20);
+		g.setFont(font);
 		g.setColor(Color.white);
 		g.drawString("Try Again!", 340, 590);
 	}

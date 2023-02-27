@@ -1,4 +1,4 @@
-package ch18;
+package ch19;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -11,14 +11,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class GameSuccessFrame extends JFrame implements ActionListener {
+public class GameOverFrame extends JFrame implements ActionListener {
 	private JLabel gameOverMap;
 	private JButton startButton;
+	private JLabel gameOver;
 	private JLabel gameSuccess;
 
-	public GameSuccessFrame() {
+	public GameOverFrame() {
 		initData();
-		setInitLayout(); 
+		setInitLayout();
 		addEventListener();
 	}
 
@@ -29,22 +30,23 @@ public class GameSuccessFrame extends JFrame implements ActionListener {
 		gameOverMap = new JLabel(new ImageIcon("images/gameEndMap.jpg"));
 		setContentPane(gameOverMap);
 		startButton = new JButton("Game Start!");
+		gameOver = new JLabel(new ImageIcon("images/gameOver.png"));
 		gameSuccess = new JLabel(new ImageIcon("images/youWin.png"));
 	}
 
-	private void setInitLayout() {
+	private void setInitLayout() { 
 		setVisible(true);
 		gameOverMap.add(startButton);
 		startButton.setSize(200, 50);
 		startButton.setLocation(290, 600);
 		startButton.setBorderPainted(false);
 		startButton.setBackground(Color.yellow);
-		gameSuccess.setSize(800, 200);
-		gameSuccess.setLocation(10, 300);
-		add(gameSuccess);
+		gameOver.setSize(800, 200);
+		gameOver.setLocation(10, 300);
+		add(gameOver);
 	}
 
-	private void addEventListener() { 
+	private void addEventListener() {
 		startButton.addActionListener(this);
 	}
 
@@ -57,9 +59,9 @@ public class GameSuccessFrame extends JFrame implements ActionListener {
 
 	public void paint(Graphics g) {
 		super.paint(g);
-		Font font1 = new Font("consolas", Font.BOLD, 20);
-		g.setFont(font1);
+		Font font = new Font("consolas", Font.BOLD, 20);
+		g.setFont(font);
 		g.setColor(Color.white);
-		g.drawString("Congratulations!", 320, 590);
+		g.drawString("Try Again!", 340, 590);
 	}
 }
