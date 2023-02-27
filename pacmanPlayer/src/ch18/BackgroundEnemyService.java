@@ -104,6 +104,7 @@ public class BackgroundEnemyService implements Runnable {
 					mContext.getPlayer().setDie(true);
 					mContext.setVisible(false);
 					mContext.getGameBGM().getClip().loop(0);
+					mContext.getGameBGM().getGainControl().setValue(-80.0f);
 					new GameOverFrame();
 					break;
 				}

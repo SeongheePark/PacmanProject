@@ -14,7 +14,7 @@ public class InGameBGM {
 	
 	public InGameBGM() {
 		try {
-			AudioInputStream ais = AudioSystem.getAudioInputStream(new File("sound/pacman_chomp.wav"));
+			AudioInputStream ais = AudioSystem.getAudioInputStream(new File("sound/InfiniteDoors.wav"));
 			clip = AudioSystem.getClip();
 			clip.open(ais);
 			gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
