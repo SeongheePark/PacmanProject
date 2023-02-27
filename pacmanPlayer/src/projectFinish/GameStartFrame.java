@@ -1,4 +1,4 @@
-package ch19;
+package projectFinish;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -11,13 +11,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class GameOverFrame extends JFrame implements ActionListener {
-	private JLabel gameOverMap;
+public class GameStartFrame extends JFrame implements ActionListener {
+	private JLabel startMap;
 	private JButton startButton;
-	private JLabel gameOver;
-	private JLabel gameSuccess;
+	private BGM bgm;
 
-	public GameOverFrame() {
+	public GameStartFrame() {
 		initData();
 		setInitLayout();
 		addEventListener();
@@ -27,23 +26,19 @@ public class GameOverFrame extends JFrame implements ActionListener {
 		setTitle("팩맨");
 		setSize(800, 800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		gameOverMap = new JLabel(new ImageIcon("images/gameEndMap.jpg"));
-		setContentPane(gameOverMap);
-		startButton = new JButton("Game Start!");
-		gameOver = new JLabel(new ImageIcon("images/gameOver.png"));
-		gameSuccess = new JLabel(new ImageIcon("images/youWin.png"));
+		startMap = new JLabel(new ImageIcon("images/startMap.jpg"));
+		setContentPane(startMap);
+		startButton = new JButton("Game Start");
+		bgm = new BGM();
 	}
 
-	private void setInitLayout() { 
+	private void setInitLayout() {
 		setVisible(true);
-		gameOverMap.add(startButton);
-		startButton.setSize(200, 50);
-		startButton.setLocation(290, 600);
+		startMap.add(startButton);
+		startButton.setSize(230, 50);
+		startButton.setLocation(270, 600);
 		startButton.setBorderPainted(false);
 		startButton.setBackground(Color.yellow);
-		gameOver.setSize(800, 200);
-		gameOver.setLocation(10, 300);
-		add(gameOver);
 	}
 
 	private void addEventListener() {
@@ -52,6 +47,7 @@ public class GameOverFrame extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		bgm.getGainControl().setValue(-80.0f);
 		JButton startButton = (JButton) e.getSource();
 		new PacManFrame();
 		setVisible(false);
@@ -59,9 +55,18 @@ public class GameOverFrame extends JFrame implements ActionListener {
 
 	public void paint(Graphics g) {
 		super.paint(g);
-		Font font = new Font("consolas", Font.BOLD, 20);
-		g.setFont(font);
+		Font startFont = new Font("consolas", Font.BOLD, 50);
+		g.setFont(startFont);
 		g.setColor(Color.white);
-		g.drawString("Try Again!", 340, 590);
+		g.drawString("Let's Play!", 250, 590);
+		Font projectName = new Font("consolas", Font.BOLD, 15);
+		g.setFont(projectName);
+		g.setColor(Color.white);
+		g.drawString("made by ProjectC", 620, 770);
 	}
+
+	public static void main(String[] args) {
+		new GameStartFrame();
+	}
+
 }

@@ -1,4 +1,4 @@
-package ch19;
+package projectFinish;
 
 public enum PlayerWay {
 	LEFT, RIGHT, UP, DOWN

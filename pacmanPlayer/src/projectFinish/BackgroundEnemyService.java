@@ -1,4 +1,4 @@
-package ch19;
+package projectFinish;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -97,11 +97,12 @@ public class BackgroundEnemyService extends JFrame implements Runnable {
 			if (crash() && !mContext.getPlayer().isGhost()) {
 				// mContext.remove(mContext.getPlayer());
 				mContext.getPlayer().setGhost(true);
-				mContext.getPlayer().resurrection();
 				if (mContext.getPlayer().getLifeCount() == 3) {
 					mContext.getLife3().setIcon(null);
+					mContext.getPlayer().resurrection();
 				} else if (mContext.getPlayer().getLifeCount() == 2) {
 					mContext.getLife2().setIcon(null);
+					mContext.getPlayer().resurrection();
 				} else if (mContext.getPlayer().getLifeCount() == 1) {
 					mContext.getLife1().setIcon(null);
 				}
@@ -110,6 +111,12 @@ public class BackgroundEnemyService extends JFrame implements Runnable {
 				if (mContext.getPlayer().getLifeCount() == 0) {
 					mContext.setGameOver(true); // 게임오버
 					mContext.getPlayer().setDie(true);
+					mContext.getPlayer().setIcon(mContext.getPlayer().getDieMotion());
+					try {
+						Thread.sleep(2200);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 					mContext.setVisible(false);
 					mContext.getGameBGM().getClip().loop(0);
 					mContext.getGameBGM().getGainControl().setValue(-80.0f);
@@ -117,7 +124,18 @@ public class BackgroundEnemyService extends JFrame implements Runnable {
 					break;
 				}
 			}
-
+			
+			if(mContext.getPlayer().isEatMarble()) {
+				enemy.setSpeed(0);
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				enemy.setSpeed(1);
+				mContext.getPlayer().setEatMarble(false);
+			}
+			
 			// 에너미 상하좌우 이동 변경
 			if (direction == 0) {
 				if (canMove()) {

@@ -1,4 +1,4 @@
-package ch19;
+package projectFinish;
 
 import java.awt.Color;
 
@@ -72,7 +72,7 @@ public class BackgroundPlayerService implements Runnable {
 			}
 			
 			// 게임 정상 종료
-			if (mContext.getScoreN() == 150) {
+			if (mContext.getScoreN() == 6400) {
 				new GameSuccessFrame();
 				mContext.setVisible(false);
 				break;

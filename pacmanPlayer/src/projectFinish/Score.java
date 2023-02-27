@@ -1,4 +1,4 @@
-package ch19;
+package projectFinish;
 
 public class Score {
 	private int score = 0;

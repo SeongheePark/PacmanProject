@@ -1,4 +1,4 @@
-package ch19;
+package projectFinish;
 
 import java.awt.Color;
 
@@ -21,11 +21,12 @@ public class PacManFrame extends JFrame {
 	private JLabel[] seed = new JLabel[131];
 	private PacManFrame mContext = this;
 	private Score score = new Score();
+	private ArrayList<JLabel> marbleList = new ArrayList<>();
 	private ArrayList<Enemy> enemyList = new ArrayList<>();
 	// 남은 목숨 이미지로 보여줄 수 있는 이미지
 	private JLabel life1;
 	private JLabel life2;
-	private JLabel life3; 
+	private JLabel life3;
 	// 키 동시입력 막는 용도
 	private boolean keyPressed;
 	// 게임 끝 판단 용도
@@ -66,6 +67,18 @@ public class PacManFrame extends JFrame {
 		}
 	}
 
+	public ArrayList<JLabel> getMarbleList() {
+		return marbleList;
+	}
+
+	public void setMarbleList(ArrayList<JLabel> marbleList) {
+		this.marbleList = marbleList;
+	}
+
+	public JLabel getMarble(int i) {
+		return marbleList.get(i);
+	}
+
 	public InGameBGM getGameBGM() {
 		return gameBGM;
 	}
@@ -77,7 +90,7 @@ public class PacManFrame extends JFrame {
 	public Score getScore() {
 		return score;
 	}
-	
+
 	public int getScoreN() {
 		return score.getScore();
 	}
@@ -146,6 +159,7 @@ public class PacManFrame extends JFrame {
 		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		makeEnemies();
+		makeMarble();
 		life1 = new JLabel(new ImageIcon("images/life.png"));
 		life2 = new JLabel(new ImageIcon("images/life.png"));
 		life3 = new JLabel(new ImageIcon("images/life.png"));
@@ -163,8 +177,13 @@ public class PacManFrame extends JFrame {
 		enemyList.add(new Enemy(50, 670));
 		enemyList.add(new Enemy(690, 50));
 		enemyList.add(new Enemy(690, 670));
+	}
 
-		System.out.println(enemyList.size());
+	public void makeMarble() {
+		marbleList.add(new Marble(55, 204));
+		marbleList.add(new Marble(55, 516));
+		marbleList.add(new Marble(680, 204));
+		marbleList.add(new Marble(680, 516));
 	}
 
 	public void setInitLayout() {
@@ -177,21 +196,26 @@ public class PacManFrame extends JFrame {
 		life2.setLocation(450, 715);
 		life3.setLocation(500, 715);
 
+		// 유령
 		for (int i = 0; i < enemyList.size(); i++) {
 			add(enemyList.get(i));
+		}
+		// 구슬
+		for (int i = 0; i < marbleList.size(); i++) {
+			add(marbleList.get(i));
 		}
 		// seed 1번 지점 x 6개찍기
 		for (int i = 0; i < 6; i++) {
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
-			seedX += 50;
+			seedX += 53;
 		}
-		seedX = 425;
+		seedX = 420;
 		// seed 6번지점 x 6개찍기
 		for (int i = 6; i < 12; i++) {
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
-			seedX += 50;
+			seedX += 52;
 		}
 		seedX = 55;
 		seedY = 670;
@@ -199,153 +223,162 @@ public class PacManFrame extends JFrame {
 		for (int i = 14; i < 20; i++) {
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
-			seedX += 50;
+			seedX += 53;
 		}
-		seedX = 425;
+		seedX = 420;
 		// seed 101번지점 x 6개찍기
 		for (int i = 20; i < 26; i++) {
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
-			seedX += 50;
+			seedX += 52;
 		}
 		seedX = 55;
-		seedY = 105;
+		seedY = 100;
 		// seed 1번 지점 y 11개 찍기
 		for (int i = 26; i < 37; i++) {
+			// 아이템 부분 씨앗 없애기
+			if (i == 28) {
+				seedY = 256;
+				continue;
+			} else if (i == 34) {
+				seedY = 568;
+				continue;
+			}
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
-			seedY += 50;
+			seedY += 52;
 		}
 		seedX = 680;
-		seedY = 105;
+		seedY = 100;
 		// seed 10번 지점 y 11개 찍기
 		for (int i = 37; i < 48; i++) {
+			// 아이템 부분 씨앗 없애기
+			if (i == 39) {
+				seedY = 256;
+				continue;
+			} else if (i == 45) {
+				seedY = 568;
+				continue;
+			}
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
-			seedY += 50;
-		}
-		seedX = 170;
-		seedY = 140;
-		// seed 16번 지점 x 4개찍기
-		for (int i = 48; i < 52; i++) {
-			add(seed[i]);
-			seed[i].setLocation(seedX, seedY);
-			seedX += 50;
+			seedY += 52;
 		}
 		// seed 16번 지점 y 9개 찍기
-		seedX = 170;
-		for (int i = 52; i < 61; i++) {
+		seedX = 160;
+		seedY = 140;
+		for (int i = 48; i < 57; i++) {
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
-			seedY += 50;
+			seedY += 53;
 		} // seed 17번 지점 y 9개 찍기
-		seedX = 220;
+		seedX = 215;
 		seedY = 140;
-		for (int i = 61; i < 70; i++) {
+		for (int i = 57; i < 66; i++) {
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
-			seedY += 50;
-		}
-		seedX = 170;
-		seedY = 140;
-		// seed 19번 지점 x 4개 찍기
-		for (int i = 70; i < 74; i++) {
-			add(seed[i]);
-			seed[i].setLocation(seedX, seedY);
-			seedX += 50;
+			seedY += 53;
 		}
 		seedX = 270;
 		seedY = 190;
 		// seed 25번 지점 x 2개 찍기
-		for (int i = 74; i < 76; i++) {
+		for (int i = 66; i < 68; i++) {
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
 			seedX += 50;
 		}
 		seedX = 270;
-		seedY = 240;
-		// seed 33번 지점 x 7개 찍기
-		for (int i = 76; i < 83; i++) {
+		seedY = 140;
+		// seed 17번 지점 x 2개 찍기
+		for (int i = 70; i < 72; i++) {
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
 			seedX += 50;
 		}
-		// seed 19번 지점 x 4개
+		seedX = 270;
+		seedY = 245;
+		// seed 33번 지점 x 5개 찍기
+		for (int i = 72; i < 77; i++) {
+			add(seed[i]);
+			seed[i].setLocation(seedX, seedY);
+			seedX += 50;
+		}
+		// seed 19번 지점 x 2개
 		seedX = 420;
 		seedY = 140;
-		for (int i = 83; i < 87; i++) {
+		for (int i = 77; i < 79; i++) {
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
 			seedX += 50;
 		}
 		seedX = 420;
 		seedY = 190;
-		// seed 27번 지점 x 4개
-		for (int i = 87; i < 91; i++) {
+		// seed 27번 지점 x 2개
+		for (int i = 79; i < 81; i++) {
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
 			seedX += 50;
 		}
 		seedX = 520;
-		seedY = 290;
-		// seed 44번 지점 y 6개
-		for (int i = 91; i < 97; i++) {
+		seedY = 140;
+		// seed 44번 지점 y 9개
+		for (int i = 81; i < 90; i++) {
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
-			seedY += 50;
+			seedY += 53;
 		}
 		seedX = 570;
-		seedY = 290;
-		// seed 45번 지점 y 6개
-		for (int i = 97; i < 103; i++) {
+		seedY = 140;
+		// seed 45번 지점 y 9개
+		for (int i = 90; i < 99; i++) {
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
-			seedY += 50;
+			seedY += 53;
 		}
 		seedX = 270;
-		seedY = 340;
+		seedY = 350;
 		// seed 52번 지점 x 5개
-		for (int i = 103; i < 108; i++) {
+		for (int i = 99; i < 104; i++) {
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
 			seedX += 50;
 		}
 		seedX = 320;
-		seedY = 470;
+		seedY = 460;
 		// seed 70번 지점 y 4개
-		for (int i = 108; i < 112; i++) {
+		for (int i = 104; i < 108; i++) {
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
-			seedY += 50;
+			seedY += 53;
 		}
 		seedX = 270;
-		seedY = 470;
+		seedY = 460;
 		// seed 69번 지점 y 3개
-		for (int i = 112; i < 115; i++) {
+		for (int i = 108; i < 111; i++) {
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
-			seedY += 50;
+			seedY += 53;
 		}
 		seedX = 420;
-		seedY = 470;
+		seedY = 460;
 		// seed 72번 지점 y 4개
-		for (int i = 115; i < 119; i++) {
+		for (int i = 111; i < 115; i++) {
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
-			seedY += 50;
+			seedY += 53;
 		}
 		seedX = 470;
-		seedY = 470;
+		seedY = 460;
 		// seed 73번 지점 y 3개
-		for (int i = 119; i < 122; i++) {
+		for (int i = 115; i < 118; i++) {
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
-			seedY += 50;
+			seedY += 53;
 		}
 		seedX = 105;
 		seedY = 300;
 		// seed 41번 지점 y 3개
-		for (int i = 122; i < 125; i++) {
+		for (int i = 118; i < 121; i++) {
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
 			seedY += 50;
@@ -353,17 +386,20 @@ public class PacManFrame extends JFrame {
 		seedX = 625;
 		seedY = 300;
 		// seed 46번 지점 y 3개
-		for (int i = 125; i < 128; i++) {
+		for (int i = 121; i < 124; i++) {
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
 			seedY += 50;
 		}
 		// seed 12번 지점
-		add(seed[129]);
-		seed[129].setLocation(320, 90);
+		add(seed[125]);
+		seed[125].setLocation(320, 90);
 		// seed 13번 지점
-		add(seed[130]);
-		seed[130].setLocation(420, 90);
+		add(seed[126]);
+		seed[126].setLocation(420, 90);
+		// seed 13번 지점
+		add(seed[127]);
+		seed[127].setLocation(370, 460);
 
 		setResizable(false);
 		setVisible(true);

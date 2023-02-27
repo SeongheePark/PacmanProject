@@ -1,4 +1,4 @@
-package ch19;
+package projectFinish;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;

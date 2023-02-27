@@ -32,14 +32,14 @@ public class PacManFrame extends JFrame {
 	private boolean gameOver;
 	// 씨앗 좌표
 	private int seedX;
-	private int seedY;
+	private int seedY; 
 	// 인게임 bgm
 	private InGameBGM gameBGM;
 
 	// 생성자
 	public PacManFrame() {
 		initData();
-		setInitLayout();
+		setInitLayout(); 
 		addEventListener();
 		new Thread(new BackgroundPlayerService(player, this)).start();
 		for (int i = 0; i < enemyList.size(); i++) {
