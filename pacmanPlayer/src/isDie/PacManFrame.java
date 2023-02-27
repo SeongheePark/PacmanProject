@@ -1,4 +1,4 @@
-package ch17;
+package isDie;
 
 import java.awt.Color;
 
@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import ch17.GameOverFrame;
+import isDie.GameOverFrame;
 
 public class PacManFrame extends JFrame {
 

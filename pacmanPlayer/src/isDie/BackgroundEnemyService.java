@@ -1,4 +1,4 @@
-package ch17;
+package isDie;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
