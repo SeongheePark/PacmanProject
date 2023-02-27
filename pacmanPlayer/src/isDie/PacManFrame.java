@@ -55,7 +55,7 @@ public class PacManFrame extends JFrame {
 		g.setFont(font);
 		g.setColor(Color.white);
 		g.drawString("Score", 600, 780);
-		g.drawString(score.getScore() + "점", 680, 780); 
+		g.drawString(score.getScore() + "점", 680, 780);
 		if (score.getScore() == 6150) {
 			gameSuccess = true;
 			new GameSuccessFrame();
@@ -205,6 +205,14 @@ public class PacManFrame extends JFrame {
 		seedY = 100;
 		// seed 1번 지점 y 11개 찍기
 		for (int i = 26; i < 37; i++) {
+			// 아이템 부분 씨앗 없애기
+			if (i == 28) {
+				seedY = 256;
+				continue;
+			} else if (i == 34) {
+				seedY = 568;
+				continue;
+			}
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
 			seedY += 52;
@@ -213,6 +221,14 @@ public class PacManFrame extends JFrame {
 		seedY = 100;
 		// seed 10번 지점 y 11개 찍기
 		for (int i = 37; i < 48; i++) {
+			// 아이템 부분 씨앗 없애기
+			if (i == 39) {
+				seedY = 256;
+				continue;
+			} else if (i == 45) {
+				seedY = 568;
+				continue;
+			}
 			add(seed[i]);
 			seed[i].setLocation(seedX, seedY);
 			seedY += 52;
