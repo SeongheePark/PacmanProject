@@ -355,6 +355,7 @@ public class Player extends JLabel {
 						&& Math.abs(y - mContext.getMarble(i).getY()) < 15) {
 					mContext.getMarble(i).setIcon(null);
 					eatMarble = true;
+					mContext.getMarble(i).setLocation(mContext.getMarble(i).setX(0), mContext.getMarble(i).setY(0));
 					// 유령 멈추는 코드 라인
 					// 구슬 좌표 남아있을 수 있음
 				}
@@ -368,6 +369,8 @@ public class Player extends JLabel {
 						&& Math.abs(y - mContext.getMarble(i).getY()) < 15) {
 					mContext.getMarble(i).setIcon(null);
 					eatMarble = true;
+					mContext.getMarble(i).setLocation(0, 0);
+					mContext.getMarble(i).setLocation(mContext.getMarble(i).setX(0), mContext.getMarble(i).setY(0));
 				}
 			}
 			mContext.repaint();
@@ -379,6 +382,8 @@ public class Player extends JLabel {
 						&& Math.abs(y - mContext.getMarble(i).getY()) < 15) {
 					mContext.getMarble(i).setIcon(null);
 					eatMarble = true;
+					mContext.getMarble(i).setLocation(0, 0);
+					mContext.getMarble(i).setLocation(mContext.getMarble(i).setX(0), mContext.getMarble(i).setY(0));
 				}
 			}
 			mContext.repaint();
@@ -390,6 +395,8 @@ public class Player extends JLabel {
 						&& Math.abs(y - mContext.getMarble(i).getY()) < 15) {
 					mContext.getMarble(i).setIcon(null);
 					eatMarble = true;
+					mContext.getMarble(i).setLocation(0, 0);
+					mContext.getMarble(i).setLocation(mContext.getMarble(i).setX(0), mContext.getMarble(i).setY(0));
 				}
 			}
 			mContext.repaint();

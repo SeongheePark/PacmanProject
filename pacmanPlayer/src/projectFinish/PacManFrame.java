@@ -75,8 +75,8 @@ public class PacManFrame extends JFrame {
 		this.marbleList = marbleList;
 	}
 
-	public JLabel getMarble(int i) {
-		return marbleList.get(i);
+	public Marble getMarble(int i) {
+		return (Marble)marbleList.get(i);
 	}
 
 	public InGameBGM getGameBGM() {

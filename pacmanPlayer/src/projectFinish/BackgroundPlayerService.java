@@ -72,7 +72,7 @@ public class BackgroundPlayerService implements Runnable {
 			}
 			
 			// 게임 정상 종료
-			if (mContext.getScoreN() == 6400) {
+			if (mContext.getScoreN() == 5950) {
 				new GameSuccessFrame();
 				mContext.setVisible(false);
 				break;
