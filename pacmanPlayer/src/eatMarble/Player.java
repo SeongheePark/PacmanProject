@@ -1,4 +1,4 @@
-package ch17;
+package eatMarble;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -33,14 +33,15 @@ public class Player extends JLabel {
 	private boolean bottomWallCrash;
 
 	PacManFrame mContext;
-	private ImageIcon dieMotion;
+	
+	private boolean eatMarble;
 
 	// player가 보는 방향
 	PlayerWay pWay;
-	
+
 	// player 죽은 상태
 	private boolean die;
-	
+
 	// player 라이프 상태
 	private int lifeCount;
 
@@ -50,12 +51,12 @@ public class Player extends JLabel {
 		setInitLayout();
 	}
 	
-	public ImageIcon getDieMotion() {
-		return dieMotion;
+	public boolean isEatMarble() {
+		return eatMarble;
 	}
 
-	public void setDieMotion(ImageIcon dieMotion) {
-		this.dieMotion = dieMotion;
+	public void setEatMarble(boolean eatMarble) {
+		this.eatMarble = eatMarble;
 	}
 
 	public boolean isDie() {
@@ -165,13 +166,12 @@ public class Player extends JLabel {
 	public void setDown(boolean down) {
 		this.down = down;
 	}
-	
+
 	private void initData() {
 		playerR = new ImageIcon("images/PacmanR.png");
 		playerL = new ImageIcon("images/PacmanL.png");
 		playerU = new ImageIcon("images/PacmanU.png");
 		playerD = new ImageIcon("images/PacmanD.png");
-		dieMotion = new ImageIcon("images/die.gif");
 		left = false;
 		right = false;
 		up = false;
@@ -183,6 +183,7 @@ public class Player extends JLabel {
 		pWay = PlayerWay.RIGHT;
 		die = false;
 		lifeCount = 3;
+		eatMarble = false;
 	}
 
 	private void setInitLayout() {
@@ -217,6 +218,7 @@ public class Player extends JLabel {
 			x = x - SPEED;
 			setLocation(x, y);
 			eatSeed();
+			eatMarble();
 			try {
 				Thread.sleep(15);
 			} catch (InterruptedException e) {
@@ -232,6 +234,7 @@ public class Player extends JLabel {
 			x = x + SPEED;
 			setLocation(x, y);
 			eatSeed();
+			eatMarble();
 			try {
 				Thread.sleep(15);
 			} catch (InterruptedException e) {
@@ -247,6 +250,7 @@ public class Player extends JLabel {
 			y = y - SPEED;
 			setLocation(x, y);
 			eatSeed();
+			eatMarble();
 			try {
 				Thread.sleep(15);
 			} catch (InterruptedException e) {
@@ -262,6 +266,7 @@ public class Player extends JLabel {
 			y = y + SPEED;
 			setLocation(x, y);
 			eatSeed();
+			eatMarble();
 			try {
 				Thread.sleep(15);
 			} catch (InterruptedException e) {
@@ -271,14 +276,14 @@ public class Player extends JLabel {
 	}
 
 	public void resurrection() {
-			this.x = 340;
-			this.y = 340;
-			setLocation(340, 340);
-			setIcon(playerR);
-			ghost = false;
-			repaint();
+		this.x = 340;
+		this.y = 340;
+		setLocation(340, 340);
+		setIcon(playerR);
+		ghost = false;
+		repaint();
 	}
-	
+
 	public void eatSeed() {
 		if (left) {
 			for (int i = 0; i < mContext.getSeed().length; i++) {
@@ -322,7 +327,56 @@ public class Player extends JLabel {
 				}
 			}
 			mContext.repaint();
+		}
+	}
+
+	// 구슬 먹은 경우
+	public void eatMarble() {
+		if (left) {
+			for (int i = 0; i < mContext.getMarbleList().size(); i++) {
+				if (Math.abs(x - mContext.getMarble(i).getX()) < 15
+						&& Math.abs(y - mContext.getMarble(i).getY()) < 15) {
+					mContext.getMarble(i).setIcon(null);
+					eatMarble =true;
+					// 유령 멈추는 코드 라인
+					// 구슬 좌표 남아있을 수 있음
+				}
+			}
+			mContext.repaint();
+		} // end of isLeft
+
+		if (right) {
+			for (int i = 0; i < mContext.getMarbleList().size(); i++) {
+				if (Math.abs(x - mContext.getMarble(i).getX()) < 15
+						&& Math.abs(y - mContext.getMarble(i).getY()) < 15) {
+					mContext.getMarble(i).setIcon(null);
+					eatMarble =true;
+				}
+			}
+			mContext.repaint();
+		} // end of isRight
+
+		if (up) {
+			for (int i = 0; i < mContext.getMarbleList().size(); i++) {
+				if (Math.abs(x - mContext.getMarble(i).getX()) < 15
+						&& Math.abs(y - mContext.getMarble(i).getY()) < 15) {
+					mContext.getMarble(i).setIcon(null);
+					eatMarble =true;
+				}
+			}
+			mContext.repaint();
+		} // end of isUp
+
+		if (down) {
+			for (int i = 0; i < mContext.getMarbleList().size(); i++) {
+				if (Math.abs(x - mContext.getMarble(i).getX()) < 15
+						&& Math.abs(y - mContext.getMarble(i).getY()) < 15) {
+					mContext.getMarble(i).setIcon(null);
+					eatMarble =true;
+				}
+			}
+			mContext.repaint();
 		} // end of isDown
-	}// end of eatSeed
+	}
 
 } // end of class

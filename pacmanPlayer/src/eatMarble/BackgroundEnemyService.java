@@ -1,4 +1,4 @@
-package ch17;
+package eatMarble;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 public class BackgroundEnemyService implements Runnable {
 	private Enemy enemy;
@@ -21,14 +20,13 @@ public class BackgroundEnemyService implements Runnable {
 	private int direction = 2;
 	private int x;
 	private int y;
-	
+
 	public BackgroundEnemyService(Enemy enemy, PacManFrame mContext) {
 		this.enemy = enemy;
 		this.mContext = mContext;
 		this.x = enemy.getX();
 		this.y = enemy.getY();
 		randomDirection = new Random();
-
 		try {
 			map = ImageIO.read(new File("images/backgroundMapService(2).png"));
 		} catch (IOException e) {
@@ -91,12 +89,11 @@ public class BackgroundEnemyService implements Runnable {
 			if (crash() && !mContext.getPlayer().isGhost()) {
 				// mContext.remove(mContext.getPlayer());
 				mContext.getPlayer().setGhost(true);
+				mContext.getPlayer().resurrection();
 				if(mContext.getPlayer().getLifeCount() == 3) {
 					mContext.getLife3().setIcon(null);
-					mContext.getPlayer().resurrection();
 				} else if(mContext.getPlayer().getLifeCount() == 2) {
 					mContext.getLife2().setIcon(null);
-					mContext.getPlayer().resurrection();
 				} else if(mContext.getPlayer().getLifeCount() == 1) {
 					mContext.getLife1().setIcon(null);
 				}
@@ -105,18 +102,25 @@ public class BackgroundEnemyService implements Runnable {
 				if(mContext.getPlayer().getLifeCount() == 0) {
 					mContext.setGameOver(true); // 게임오버
 					mContext.getPlayer().setDie(true);
-					mContext.getPlayer().setIcon(mContext.getPlayer().getDieMotion());
-					try {
-						Thread.sleep(2200);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
 					mContext.setVisible(false);
+					mContext.getGameBGM().getClip().loop(0);
+					mContext.getGameBGM().getGainControl().setValue(-80.0f);
 					new GameOverFrame();
 					break;
 				}
 			}
-
+			
+			if(mContext.getPlayer().isEatMarble()) {
+				enemy.setSpeed(0);
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				enemy.setSpeed(1);
+				mContext.getPlayer().setEatMarble(false);
+			}
+			
 			// 에너미 상하좌우 이동 변경
 			if (direction == 0) {
 				if (canMove()) {

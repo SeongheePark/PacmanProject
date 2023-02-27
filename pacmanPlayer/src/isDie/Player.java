@@ -1,4 +1,4 @@
-package ch17;
+package isDie;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;

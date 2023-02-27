@@ -1,4 +1,4 @@
-package ch17;
+package eatMarble;
 
 public class Seed {
 

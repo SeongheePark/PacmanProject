@@ -1,4 +1,4 @@
-package ch18;
+package eatMarble;
 
 import java.awt.Color;
 
@@ -17,19 +17,20 @@ public class PacManFrame extends JFrame {
 	// 팩맨 요소들
 	private JLabel backgroundMap;
 	private Player player;
-	private Enemy enemy;
 	private JLabel[] seed = new JLabel[131];
 	private PacManFrame mContext = this;
 	private Score score = new Score();
+	private ArrayList<JLabel> marbleList = new ArrayList<>();
 	private ArrayList<Enemy> enemyList = new ArrayList<>();
 	// 남은 목숨 이미지로 보여줄 수 있는 이미지
 	private JLabel life1;
 	private JLabel life2;
-	private JLabel life3; 
+	private JLabel life3;
 	// 키 동시입력 막는 용도
 	private boolean keyPressed;
 	// 게임 끝 판단 용도
 	private boolean gameOver;
+	private boolean gameSuccess;
 	// 씨앗 좌표
 	private int seedX;
 	private int seedY;
@@ -41,7 +42,8 @@ public class PacManFrame extends JFrame {
 		initData();
 		setInitLayout();
 		addEventListener();
-		new Thread(new BackgroundPlayerService(player, this)).start();
+		new Thread(new BackgroundPlayerService(player)).start();
+
 		for (int i = 0; i < enemyList.size(); i++) {
 			new Thread(new BackgroundEnemyService(enemyList.get(i), this)).start();
 		}
@@ -51,19 +53,16 @@ public class PacManFrame extends JFrame {
 	// score 화면 표시
 	public void paint(Graphics g) {
 		super.paint(g);
-		Font font1 = new Font("맑은 고딕", Font.BOLD, 20);
-		g.setFont(font1);
+		Font font = new Font("맑은 고딕", Font.BOLD, 20);
+		g.setFont(font);
 		g.setColor(Color.white);
 		g.drawString("Score", 600, 780);
-		g.drawString(score.getScore() + "점", 680, 780);
-		// warning 화면 표시
-		if (enemyList.get(0).isFastMode()) {
-			super.paint(g);
-			Font font = new Font("consolas", Font.BOLD, 50);
-			g.setFont(font);
-			g.setColor(Color.red);
-			g.drawString("Warning", 300, 430);
+		g.drawString(score.getScore() + "점", 680, 780); // 6650점 max
+		if (score.getScore() == 6400) {
+			gameSuccess = true;
+			new GameSuccessFrame();
 		}
+
 	}
 
 	public InGameBGM getGameBGM() {
@@ -76,10 +75,6 @@ public class PacManFrame extends JFrame {
 
 	public Score getScore() {
 		return score;
-	}
-	
-	public int getScoreN() {
-		return score.getScore();
 	}
 
 	public void setScore(Score score) {
@@ -96,6 +91,18 @@ public class PacManFrame extends JFrame {
 
 	public void setSeed(JLabel[] seed) {
 		this.seed = seed;
+	}
+
+	public ArrayList<JLabel> getMarbleList() {
+		return marbleList;
+	}
+	
+	public JLabel getMarble(int i) {
+		return marbleList.get(i);
+	}
+
+	public void setMarbleList(ArrayList<JLabel> marbleList) {
+		this.marbleList = marbleList;
 	}
 
 	public JLabel getLife1() {
@@ -134,6 +141,14 @@ public class PacManFrame extends JFrame {
 		this.gameOver = gameOver;
 	}
 
+	public boolean isGameSuccess() {
+		return gameSuccess;
+	}
+
+	public void setGameSuccess(boolean gameSuccess) {
+		this.gameSuccess = gameSuccess;
+	}
+
 	public void initData() {
 		setTitle("팩맨");
 		setSize(800, 800);
@@ -146,6 +161,7 @@ public class PacManFrame extends JFrame {
 		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		makeEnemies();
+		makeMarble();
 		life1 = new JLabel(new ImageIcon("images/life.png"));
 		life2 = new JLabel(new ImageIcon("images/life.png"));
 		life3 = new JLabel(new ImageIcon("images/life.png"));
@@ -165,6 +181,11 @@ public class PacManFrame extends JFrame {
 		enemyList.add(new Enemy(690, 670));
 	}
 
+	public void makeMarble() {
+		marbleList.add(new Marble(50, 335));
+		marbleList.add(new Marble(690, 335));
+	}
+
 	public void setInitLayout() {
 		setLayout(null);
 		add(player);
@@ -175,9 +196,15 @@ public class PacManFrame extends JFrame {
 		life2.setLocation(450, 715);
 		life3.setLocation(500, 715);
 
+		// 유령
 		for (int i = 0; i < enemyList.size(); i++) {
 			add(enemyList.get(i));
 		}
+		// 구슬
+		for (int i = 0; i < marbleList.size(); i++) {
+			add(marbleList.get(i));
+		}
+
 		// seed 1번 지점 x 6개찍기
 		for (int i = 0; i < 6; i++) {
 			add(seed[i]);
