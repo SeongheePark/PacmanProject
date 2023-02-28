@@ -34,7 +34,7 @@ public class Player extends JLabel {
 
 	PacManFrame mContext;
 	private ImageIcon dieMotion;
-	private boolean eatMarble;
+	private boolean eatItem;
 
 	// player가 보는 방향
 	PlayerWay pWay;
@@ -59,12 +59,12 @@ public class Player extends JLabel {
 		this.dieMotion = dieMotion;
 	}
 
-	public boolean isEatMarble() {
-		return eatMarble;
+	public boolean isEatItem() {
+		return eatItem;
 	}
 
-	public void setEatMarble(boolean eatMarble) {
-		this.eatMarble = eatMarble;
+	public void setEatItem(boolean eatItem) {
+		this.eatItem = eatItem;
 	}
 
 	public PacManFrame getmContext() {
@@ -200,7 +200,7 @@ public class Player extends JLabel {
 		pWay = PlayerWay.RIGHT;
 		die = false;
 		lifeCount = 3;
-		eatMarble = false;
+		eatItem = false;
 	}
 
 	private void setInitLayout() {
@@ -235,7 +235,7 @@ public class Player extends JLabel {
 			x = x - SPEED;
 			setLocation(x, y);
 			eatSeed();
-			eatMarble();
+			eatItem();
 			try {
 				Thread.sleep(15);
 			} catch (InterruptedException e) {
@@ -251,7 +251,7 @@ public class Player extends JLabel {
 			x = x + SPEED;
 			setLocation(x, y);
 			eatSeed();
-			eatMarble();
+			eatItem();
 			try {
 				Thread.sleep(15);
 			} catch (InterruptedException e) {
@@ -267,7 +267,7 @@ public class Player extends JLabel {
 			y = y - SPEED;
 			setLocation(x, y);
 			eatSeed();
-			eatMarble();
+			eatItem();
 			try {
 				Thread.sleep(15);
 			} catch (InterruptedException e) {
@@ -283,7 +283,7 @@ public class Player extends JLabel {
 			y = y + SPEED;
 			setLocation(x, y);
 			eatSeed();
-			eatMarble();
+			eatItem();
 			try {
 				Thread.sleep(15);
 			} catch (InterruptedException e) {
@@ -348,42 +348,15 @@ public class Player extends JLabel {
 	}// end of eatSeed
 
 	// 구슬 먹은 경우
-	public void eatMarble() {
-		if (left) {
-			for (int i = 0; i < mContext.getMarbleList().size(); i++) {
-				if (Math.abs(x - mContext.getMarble(i).getX()) < 15
-						&& Math.abs(y - mContext.getMarble(i).getY()) < 15) {
-					mContext.getMarble(i).setIcon(null);
-					eatMarble = true;
-					mContext.getMarble(i).setLocation(mContext.getMarble(i).setX(0), mContext.getMarble(i).setY(0));
-					// 유령 멈추는 코드 라인
-					// 구슬 좌표 남아있을 수 있음
-				}
-			}
-			mContext.repaint();
-		} // end of isLeft
-
-		if (right) {
-			for (int i = 0; i < mContext.getMarbleList().size(); i++) {
-				if (Math.abs(x - mContext.getMarble(i).getX()) < 15
-						&& Math.abs(y - mContext.getMarble(i).getY()) < 15) {
-					mContext.getMarble(i).setIcon(null);
-					eatMarble = true;
-					mContext.getMarble(i).setLocation(0, 0);
-					mContext.getMarble(i).setLocation(mContext.getMarble(i).setX(0), mContext.getMarble(i).setY(0));
-				}
-			}
-			mContext.repaint();
-		} // end of isRight
-
+	public void eatItem() {
 		if (up) {
 			for (int i = 0; i < mContext.getMarbleList().size(); i++) {
 				if (Math.abs(x - mContext.getMarble(i).getX()) < 15
 						&& Math.abs(y - mContext.getMarble(i).getY()) < 15) {
 					mContext.getMarble(i).setIcon(null);
-					eatMarble = true;
-					mContext.getMarble(i).setLocation(0, 0);
-					mContext.getMarble(i).setLocation(mContext.getMarble(i).setX(0), mContext.getMarble(i).setY(0));
+					eatItem = true;
+					mContext.getMarble(i).setX(0);
+					mContext.getMarble(i).setY(0);
 				}
 			}
 			mContext.repaint();
@@ -394,9 +367,9 @@ public class Player extends JLabel {
 				if (Math.abs(x - mContext.getMarble(i).getX()) < 15
 						&& Math.abs(y - mContext.getMarble(i).getY()) < 15) {
 					mContext.getMarble(i).setIcon(null);
-					eatMarble = true;
-					mContext.getMarble(i).setLocation(0, 0);
-					mContext.getMarble(i).setLocation(mContext.getMarble(i).setX(0), mContext.getMarble(i).setY(0));
+					eatItem = true;
+					mContext.getMarble(i).setX(0);
+					mContext.getMarble(i).setY(0);
 				}
 			}
 			mContext.repaint();

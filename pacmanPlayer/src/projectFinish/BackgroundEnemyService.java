@@ -19,7 +19,7 @@ public class BackgroundEnemyService extends JFrame implements Runnable {
 	private int time;
 	private int direction = 2;
 	private int x;
-	private int y; 
+	private int y;
 
 	public Enemy getEnemy() {
 		return enemy;
@@ -36,7 +36,7 @@ public class BackgroundEnemyService extends JFrame implements Runnable {
 		this.y = enemy.getY();
 		randomDirection = new Random();
 		try {
-			map = ImageIO.read(new File("images/backgroundMapService(2).png"));
+			map = ImageIO.read(new File("images/backgroundMapService.png"));
 		} catch (IOException e) {
 			System.out.println("백그라운드 플레이어 서비스 객체에 사용하는 이미지 경로 및 파일명 확인!");
 		}
@@ -47,20 +47,20 @@ public class BackgroundEnemyService extends JFrame implements Runnable {
 		Color rightColor = new Color(map.getRGB(enemy.getX() + 40, enemy.getY() + 25));
 		Color bottomColor = new Color(map.getRGB(enemy.getX() + 25, enemy.getY() + 45));
 		Color topColor = new Color(map.getRGB(enemy.getX() + 25, enemy.getY() + 5));
-
 		// 동서남북 검사
-		if (direction == 0 && rightColor.getRed() == 255 && rightColor.getGreen() == 0 && rightColor.getBlue() == 0) {
+		if (direction == 0 && rightColor.getRed() == 255 &&
+				rightColor.getGreen() == 0 && rightColor.getBlue() == 0) {
 			return false;
-		} else if (direction == 1 && leftColor.getRed() == 255 && leftColor.getGreen() == 0
-				&& leftColor.getBlue() == 0) {
+		} else if (direction == 1 && leftColor.getRed() == 255 
+				&& leftColor.getGreen() == 0 && leftColor.getBlue() == 0) {
 			return false;
-		} else if (direction == 2 && bottomColor.getRed() == 255 && bottomColor.getGreen() == 0
-				&& bottomColor.getBlue() == 0) {
+		} else if (direction == 2 && bottomColor.getRed() == 255
+				&& bottomColor.getGreen() == 0 && bottomColor.getBlue() == 0) {
 			return false;
-		} else if (direction == 3 && topColor.getRed() == 255 && topColor.getGreen() == 0 && topColor.getBlue() == 0) {
+		} else if (direction == 3 && topColor.getRed() == 255 
+				&& topColor.getGreen() == 0 && topColor.getBlue() == 0) {
 			return false;
 		}
-
 		return true;
 	}
 
@@ -95,7 +95,6 @@ public class BackgroundEnemyService extends JFrame implements Runnable {
 		while (true) {
 			// 플레이어 충돌 검사
 			if (crash() && !mContext.getPlayer().isGhost()) {
-				// mContext.remove(mContext.getPlayer());
 				mContext.getPlayer().setGhost(true);
 				if (mContext.getPlayer().getLifeCount() == 3) {
 					mContext.getLife(2).setIcon(null);
@@ -124,8 +123,8 @@ public class BackgroundEnemyService extends JFrame implements Runnable {
 					break;
 				}
 			}
-			
-			if(mContext.getPlayer().isEatMarble()) {
+
+			if (mContext.getPlayer().isEatItem()) {
 				enemy.setSpeed(0);
 				try {
 					Thread.sleep(2000);
@@ -133,9 +132,9 @@ public class BackgroundEnemyService extends JFrame implements Runnable {
 					e.printStackTrace();
 				}
 				enemy.setSpeed(1);
-				mContext.getPlayer().setEatMarble(false);
+				mContext.getPlayer().setEatItem(false);
 			}
-			
+
 			// 에너미 상하좌우 이동 변경
 			if (direction == 0) {
 				if (canMove()) {
@@ -174,14 +173,12 @@ public class BackgroundEnemyService extends JFrame implements Runnable {
 
 			// 에너미 모드 변경
 			changeMode();
-			
+
 			try {
 				Thread.sleep(8);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-
-			// break;
 		}
 	}
 }

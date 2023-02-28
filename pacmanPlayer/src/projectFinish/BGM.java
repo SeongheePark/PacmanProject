@@ -21,8 +21,6 @@ public class BGM {
 			gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 			gainControl.setValue(-20.0f); // 사운드 크기
 			clip.loop(10);
-			// 창 닫히기 전까지는 무한 반복
-//			clip.loop(Clip.LOOP_CONTINUOUSLY);
 			clip.start();
 		} catch (Exception e) {
 			e.printStackTrace();

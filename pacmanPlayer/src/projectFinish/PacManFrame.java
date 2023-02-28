@@ -1,7 +1,6 @@
 package projectFinish;
 
 import java.awt.Color;
-
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
@@ -17,7 +16,6 @@ public class PacManFrame extends JFrame {
 	// 팩맨 요소들
 	private JLabel backgroundMap;
 	private Player player;
-	private Enemy enemy;
 	private JLabel[] seed = new JLabel[131];
 	private PacManFrame mContext = this;
 	private Score score = new Score();
@@ -139,7 +137,7 @@ public class PacManFrame extends JFrame {
 	public void initData() {
 		setTitle("팩맨");
 		setSize(800, 800);
-		backgroundMap = new JLabel(new ImageIcon("images/backgroundMap4.png"));
+		backgroundMap = new JLabel(new ImageIcon("images/backgroundMap.png"));
 		setContentPane(backgroundMap);
 		player = new Player(mContext);
 		for (int i = 0; i < seed.length; i++) {

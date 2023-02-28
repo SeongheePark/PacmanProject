@@ -18,7 +18,7 @@ public class InGameBGM {
 			clip = AudioSystem.getClip();
 			clip.open(ais);
 			gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-			gainControl.setValue(-20.0f); // Reduce volume by 10 decibels.
+			gainControl.setValue(-20.0f); // 볼륨 조절
 			clip.loop(Clip.LOOP_CONTINUOUSLY);
 			clip.start();
 		} catch (Exception e) {

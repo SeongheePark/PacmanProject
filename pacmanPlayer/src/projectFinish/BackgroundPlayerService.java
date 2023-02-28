@@ -18,7 +18,7 @@ public class BackgroundPlayerService implements Runnable {
 		this.player = player;
 		this.mContext = mContext;
 		try {
-			image = ImageIO.read(new File("images/backgroundMapService(2).png"));
+			image = ImageIO.read(new File("images/backgroundMapService.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
