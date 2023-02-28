@@ -1,15 +1,15 @@
-package projectFinish;
+package projectFinish1;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class Marble extends JLabel{
+public class item extends JLabel{
 
 	private int x = 150;
 	private int y = 150;
-	private ImageIcon marble;
+	private ImageIcon item;
 
-	public Marble(int x,int y) {
+	public item(int x,int y) {
 		setInitData(x, y);
 		setInitLayout();
 	}
@@ -35,12 +35,12 @@ public class Marble extends JLabel{
 	private void setInitData(int x, int y) {
 		this.x = x;
 		this.y = y;
-		marble = new ImageIcon("images/stopwatch.png");
+		item = new ImageIcon("images/stopwatch.png");
 	}
 
 	private void setInitLayout() {
 		setSize(50, 50);
 		setLocation(x, y);
-		setIcon(marble);
+		setIcon(item);
 	}
 }

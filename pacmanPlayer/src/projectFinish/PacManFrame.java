@@ -21,12 +21,13 @@ public class PacManFrame extends JFrame {
 	private JLabel[] seed = new JLabel[131];
 	private PacManFrame mContext = this;
 	private Score score = new Score();
-	private ArrayList<JLabel> marbleList = new ArrayList<>();
+	private ArrayList<JLabel> itemList = new ArrayList<>();
 	private ArrayList<Enemy> enemyList = new ArrayList<>();
-	// 남은 목숨 이미지로 보여줄 수 있는 이미지
-	private JLabel life1;
-	private JLabel life2;
-	private JLabel life3;
+	// 남은 생명 이미지로 보여줄 수 있는 이미지
+	private JLabel[] life = new JLabel[3];
+	// 생명 좌표
+	private int lifeX;
+	private int lifeY;
 	// 키 동시입력 막는 용도
 	private boolean keyPressed;
 	// 게임 끝 판단 용도
@@ -68,15 +69,15 @@ public class PacManFrame extends JFrame {
 	}
 
 	public ArrayList<JLabel> getMarbleList() {
-		return marbleList;
+		return itemList;
 	}
 
-	public void setMarbleList(ArrayList<JLabel> marbleList) {
-		this.marbleList = marbleList;
+	public void setMarbleList(ArrayList<JLabel> itemList) {
+		this.itemList = itemList;
 	}
 
-	public Marble getMarble(int i) {
-		return (Marble)marbleList.get(i);
+	public item getMarble(int i) {
+		return (item) itemList.get(i);
 	}
 
 	public InGameBGM getGameBGM() {
@@ -111,28 +112,16 @@ public class PacManFrame extends JFrame {
 		this.seed = seed;
 	}
 
-	public JLabel getLife1() {
-		return life1;
+	public JLabel[] getLife() {
+		return life;
 	}
 
-	public void setLife1(JLabel life1) {
-		this.life1 = life1;
+	public JLabel getLife(int i) {
+		return life[i];
 	}
 
-	public JLabel getLife2() {
-		return life2;
-	}
-
-	public void setLife2(JLabel life2) {
-		this.life2 = life2;
-	}
-
-	public JLabel getLife3() {
-		return life3;
-	}
-
-	public void setLife3(JLabel life3) {
-		this.life3 = life3;
+	public void setLife(JLabel[] life) {
+		this.life = life;
 	}
 
 	public Player getPlayer() {
@@ -160,12 +149,10 @@ public class PacManFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		makeEnemies();
 		makeMarble();
-		life1 = new JLabel(new ImageIcon("images/life.png"));
-		life2 = new JLabel(new ImageIcon("images/life.png"));
-		life3 = new JLabel(new ImageIcon("images/life.png"));
-		life1.setSize(50, 50);
-		life2.setSize(50, 50);
-		life3.setSize(50, 50);
+		for (int i = 0; i < life.length; i++) {
+			life[i] = new JLabel(new ImageIcon("images/life.png"));
+			life[i].setSize(50, 50);
+		}
 		keyPressed = false;
 		seedX = 55;
 		seedY = 45;
@@ -180,29 +167,30 @@ public class PacManFrame extends JFrame {
 	}
 
 	public void makeMarble() {
-		marbleList.add(new Marble(55, 204));
-		marbleList.add(new Marble(55, 516));
-		marbleList.add(new Marble(680, 204));
-		marbleList.add(new Marble(680, 516));
+		itemList.add(new item(55, 204));
+		itemList.add(new item(55, 516));
+		itemList.add(new item(680, 204));
+		itemList.add(new item(680, 516));
 	}
 
 	public void setInitLayout() {
 		setLayout(null);
 		add(player);
-		add(life1);
-		add(life2);
-		add(life3);
-		life1.setLocation(400, 715);
-		life2.setLocation(450, 715);
-		life3.setLocation(500, 715);
+		lifeX = 400;
+		lifeY = 715;
+		for (int i = 0; i < life.length; i++) {
+			add(life[i]);
+			life[i].setLocation(lifeX, lifeY);
+			lifeX += 50;
+		}
 
 		// 유령
 		for (int i = 0; i < enemyList.size(); i++) {
 			add(enemyList.get(i));
 		}
 		// 구슬
-		for (int i = 0; i < marbleList.size(); i++) {
-			add(marbleList.get(i));
+		for (int i = 0; i < itemList.size(); i++) {
+			add(itemList.get(i));
 		}
 		// seed 1번 지점 x 6개찍기
 		for (int i = 0; i < 6; i++) {

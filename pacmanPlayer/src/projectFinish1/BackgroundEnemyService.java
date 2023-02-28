@@ -1,4 +1,4 @@
-package projectFinish;
+package projectFinish1;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;

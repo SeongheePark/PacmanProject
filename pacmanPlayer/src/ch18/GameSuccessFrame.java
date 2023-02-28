@@ -31,8 +31,8 @@ public class GameSuccessFrame extends JFrame implements ActionListener {
 		startButton = new JButton("Game Start!");
 		gameSuccess = new JLabel(new ImageIcon("images/youWin.png"));
 	}
-
-	private void setInitLayout() {
+ 
+	private void setInitLayout() { 
 		setVisible(true);
 		gameOverMap.add(startButton);
 		startButton.setSize(200, 50);

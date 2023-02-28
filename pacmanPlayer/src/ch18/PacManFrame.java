@@ -57,7 +57,7 @@ public class PacManFrame extends JFrame {
 		g.drawString("Score", 600, 780);
 		g.drawString(score.getScore() + "점", 680, 780);
 		// warning 화면 표시
-		if (enemyList.get(0).isFastMode()) {
+		if (enemy.isFastMode()) {
 			super.paint(g);
 			Font font = new Font("consolas", Font.BOLD, 50);
 			g.setFont(font);

@@ -27,7 +27,7 @@ public class BackgroundEnemyService extends JFrame implements Runnable {
 
 	public void setEnemy(Enemy enemy) {
 		this.enemy = enemy;
-	}
+	} 
 
 	public BackgroundEnemyService(Enemy enemy, PacManFrame mContext) {
 		this.enemy = enemy;

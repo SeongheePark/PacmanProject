@@ -24,7 +24,7 @@ public class GameOverFrame extends JFrame implements ActionListener {
 	}
 
 	private void initData() {
-		setTitle("팩맨");
+		setTitle("팩맨"); 
 		setSize(800, 800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameOverMap = new JLabel(new ImageIcon("images/gameEndMap.jpg"));

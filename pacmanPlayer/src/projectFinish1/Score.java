@@ -1,4 +1,4 @@
-package projectFinish;
+package projectFinish1;
 
 public class Score {
 	private int score = 0;
