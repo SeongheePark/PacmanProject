@@ -3,7 +3,7 @@ Java Swing + 팩맨 고전 게임 재구성
 
 
 ## 🖥️ 프로젝트 소개
-플래시게임 Pacman을 참고하여 만든 swing game입니다.
+플래시게임 Pacman을 참고하여 만든 Swing game입니다.
 <br>
 
 ## 🕰️ 개발 기간
@@ -16,12 +16,9 @@ Java Swing + 팩맨 고전 게임 재구성
  - 팀원4 : 이치승 - player class, seed frame, 인게임 frame
 
 ### ⚙️ 개발 환경
-- `Java 8`
-- `JDK 1.8.0`
-- **IDE** : STS 3.9
-- **Framework** : Springboot(2.x)
-- **Database** : Oracle DB(11xe)
-- **ORM** : Mybatis
+- `Java`
+- `JDK SE 11`
+- **IDE** : Eclipse 4.26
 
 ## 📌 주요 기능
 #### main frame - <a href="https://github.com/SeongheePark/PacmanProject/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C(Main-Frame)" >상세보기 - WIKI 이동</a>
@@ -29,18 +26,19 @@ Java Swing + 팩맨 고전 게임 재구성
 - score 출력
 - Life 출력
 - 경고창 출력
-#### player - <a href="" >상세보기 - WIKI 이동</a>
+#### player - <a href="https://github.com/SeongheePark/PacmanProject/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C(player)" >상세보기 - WIKI 이동</a>
 - 움직이는 기능
 - 먹는 기능
-#### enemy - <a href="" >상세보기 - WIKI 이동</a>
+#### enemy - <a href="https://github.com/SeongheePark/PacmanProject/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C(enemy)" >상세보기 - WIKI 이동</a>
 - 랜덤으로 움직이는 기능
 - fast mode 생성
-#### item - <a href="" >상세보기 - WIKI 이동</a>
+#### item | Life - <a href="https://github.com/SeongheePark/PacmanProject/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C(item-%7C-Life)" >상세보기 - WIKI 이동</a>
 - stopwatch 아이템
-#### Life - <a href="" >상세보기 - WIKI 이동</a>
 - enemy와 충돌 시마다 생명 1개씩 소멸
-#### score | seed - <a href="" >상세보기 - WIKI 이동</a> 
+#### BGM - <a href="https://github.com/SeongheePark/PacmanProject/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C(BGM)" >상세보기 - WIKI 이동</a>
+- game 배경음악
+#### score | seed - <a href="https://github.com/SeongheePark/PacmanProject/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C(score-%7C-seed)" >상세보기 - WIKI 이동</a> 
 - map을 따라 씨앗 전체 배열
 - 점수 획득 기능
-#### 시작 종료 frame - <a href="" >상세보기 - WIKI 이동</a>
+#### 시작 종료 frame - <a href="https://github.com/SeongheePark/PacmanProject/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C(Start-%7C-Finish-frame)" >상세보기 - WIKI 이동</a>
 - 시작 종료 화면 구성
