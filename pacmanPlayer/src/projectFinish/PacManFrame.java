@@ -17,7 +17,6 @@ public class PacManFrame extends JFrame {
 	// 팩맨 요소들
 	private JLabel backgroundMap;
 	private Player player;
-	private Enemy enemy;
 	private JLabel[] seed = new JLabel[131];
 	private PacManFrame mContext = this;
 	private Score score = new Score();

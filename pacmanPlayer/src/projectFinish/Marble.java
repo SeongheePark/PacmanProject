@@ -18,18 +18,16 @@ public class Marble extends JLabel{
 		return x;
 	}
 
-	public int setX(int x) {
+	public void setX(int x) {
 		this.x = x;
-		return x;
 	}
 
 	public int getY() {
 		return y;
 	}
 
-	public int setY(int y) {
+	public void setY(int y) {
 		this.y = y;
-		return y;
 	}
 	
 	private void setInitData(int x, int y) {

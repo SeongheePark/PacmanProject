@@ -21,7 +21,4 @@ public class Score {
 		return score;
 	}
 	
-	public void endGame() {
-		new GameSuccessFrame();
-	}
 }
