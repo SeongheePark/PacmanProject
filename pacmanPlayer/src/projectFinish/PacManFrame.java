@@ -66,15 +66,15 @@ public class PacManFrame extends JFrame {
 		}
 	}
 
-	public ArrayList<JLabel> getMarbleList() {
+	public ArrayList<JLabel> getItemList() {
 		return itemList;
 	}
 
-	public void setMarbleList(ArrayList<JLabel> itemList) {
+	public void setItemList(ArrayList<JLabel> itemList) {
 		this.itemList = itemList;
 	}
 
-	public item getMarble(int i) {
+	public item getItem(int i) {
 		return (item) itemList.get(i);
 	}
 
@@ -146,7 +146,7 @@ public class PacManFrame extends JFrame {
 		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		makeEnemies();
-		makeMarble();
+		makeItem();
 		for (int i = 0; i < life.length; i++) {
 			life[i] = new JLabel(new ImageIcon("images/life.png"));
 			life[i].setSize(50, 50);
@@ -164,7 +164,7 @@ public class PacManFrame extends JFrame {
 		enemyList.add(new Enemy(690, 670));
 	}
 
-	public void makeMarble() {
+	public void makeItem() {
 		itemList.add(new item(55, 204));
 		itemList.add(new item(55, 516));
 		itemList.add(new item(680, 204));

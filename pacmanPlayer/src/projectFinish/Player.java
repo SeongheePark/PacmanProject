@@ -350,26 +350,28 @@ public class Player extends JLabel {
 	// 구슬 먹은 경우
 	public void eatItem() {
 		if (up) {
-			for (int i = 0; i < mContext.getMarbleList().size(); i++) {
-				if (Math.abs(x - mContext.getMarble(i).getX()) < 15
-						&& Math.abs(y - mContext.getMarble(i).getY()) < 15) {
-					mContext.getMarble(i).setIcon(null);
+			for (int i = 0; i < mContext.getItemList().size(); i++) {
+				if (Math.abs(x - mContext.getItem(i).getX()) < 15
+						&& Math.abs(y - mContext.getItem(i).getY()) < 15) {
+					mContext.getItem(i).setIcon(null);
+					mContext.remove(mContext.getItem(i));
 					eatItem = true;
-					mContext.getMarble(i).setX(0);
-					mContext.getMarble(i).setY(0);
+					mContext.getItem(i).setX(0);
+					mContext.getItem(i).setY(0);
 				}
 			}
 			mContext.repaint();
 		} // end of isUp
 
 		if (down) {
-			for (int i = 0; i < mContext.getMarbleList().size(); i++) {
-				if (Math.abs(x - mContext.getMarble(i).getX()) < 15
-						&& Math.abs(y - mContext.getMarble(i).getY()) < 15) {
-					mContext.getMarble(i).setIcon(null);
+			for (int i = 0; i < mContext.getItemList().size(); i++) {
+				if (Math.abs(x - mContext.getItem(i).getX()) < 15
+						&& Math.abs(y - mContext.getItem(i).getY()) < 15) {
+					mContext.getItem(i).setIcon(null);
+					mContext.remove(mContext.getItem(i));
 					eatItem = true;
-					mContext.getMarble(i).setX(0);
-					mContext.getMarble(i).setY(0);
+					mContext.getItem(i).setX(0);
+					mContext.getItem(i).setY(0);
 				}
 			}
 			mContext.repaint();
