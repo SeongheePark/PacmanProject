@@ -1,4 +1,4 @@
-# Java_Project_Pacman Game
+# Java Project_Pacman Game
 Java Swing + 팩맨 고전 게임 재구성
 
 
